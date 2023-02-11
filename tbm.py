@@ -1,28 +1,23 @@
 print('Vamos calcular a sua taxa de metabolismo basal (TBM)')
 
+
+# Função para validar a entrada de dados numéricos
+def validate_input(prompt, error_message):
+    while True:
+        try:
+            value = float(input(prompt))
+            return value
+        except ValueError:
+            print(error_message)
+
 # Validação de entrada de peso
-while True:
-    try:
-        kg = float(input('Digite o seu peso = '))
-        break
-    except ValueError:
-        print("Por favor, digite um número válido para o peso.")
+kg = validate_input("Digite o seu peso (em kg) = ", "Por favor, digite um número válido para o peso.")
 
 # Validação de entrada de altura
-while True:
-    try:
-        cm = float(input('Digite a sua altura = '))
-        break
-    except ValueError:
-        print("Por favor, digite um número válido para a altura.")
+cm = validate_input("Digite a sua altura (em cm) = ", "Por favor, digite um número válido para a altura.")
 
 # Validação de entrada de idade
-while True:
-    try:
-        idade = int(input('Digite a sua idade = '))
-        break
-    except ValueError:
-        print("Por favor, digite um número válido para a idade.")
+idade = validate_input("Digite a sua idade = ", "Por favor, digite um número válido para idade.")
 
 # Validação de entrada de sexo
 while True:
@@ -52,19 +47,17 @@ print(f'Registrado com sucesso = {cad}')
 print('=' * 50)
 
 # Validação de entrada de tempo de treino
-while True:
-    try:
-        m = float(input('Digite o tempo do seu TREINO (MINUTOS) = '))
-        break
-    except ValueError:
-        print("Por favor, digite um número válido para o tempo de treino.")
-print(f'Registrado com sucesso = {m}')
+m = validate_input("Digite o tempo do seu TREINO (em minutos) = ", "Por favor, digite um número válido para o tempo de treino.")
+print(f'Registrado com sucesso = {m} minutos')
 
 print('=' * 50)
 
 met = input('Escolha a opção da intensidade do seu treino: [01] Média Intensidade / [02] Alta intensidade:  ')
 
+# Validação de entrada de intensidade de treino
+
 while met != '1' and met != '2':
+    print('Opção inválida, escolha apenas [01] ou [02].')
     met = input('Escolha a opção da intensidade do seu treino: [01] Média Intensidade / [02] Alta intensidade:  ')
 
 if met == '1':
@@ -82,15 +75,27 @@ else:
 print('=' * 50)
 
 opcao = input('Escolha uma opção: [01] Ganhar peso / [02] Perder peso:  ')
-print('Digite quantos porcentos você deseja perder ou ganhar de peso')
-porcento = int(input())
 
-while met != '1' and met != '2':
+# Validação de entrada de ganho ou perca de peso
+while opcao != '1' and opcao != '2':
+    print('Opção inválida, escolha apenas [01] ou [02].')
     opcao = input('Escolha uma opção: [01] Ganhar peso / [02] Perder peso:  ')
+
+while True:
+    try:
+        porcento = validate_input("Digite quantos porcentos você deseja perder ou ganhar de peso = ", "Por favor, digite um número.")
+        break
+    except ValueError:
+        print("Por favor, digite um número.")
 
 if opcao == '1':
     aumento_peso = ((porcento/100) * total) + total
+    print('=' * 50)
     print(f'Para você aumentar o seu peso você precisa consumir = {aumento_peso:.2f}')
+    print('=' * 50)
+
 else:
-    perda_peso = ((porcento/100) * total) - total
+    perda_peso = total - ((porcento/100) * total)
+    print('=' * 50)
     print(f'Para você perder o seu peso você precisa consumir = {perda_peso:.2f}')
+    print('=' * 50)
