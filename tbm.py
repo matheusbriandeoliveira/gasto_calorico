@@ -62,10 +62,10 @@ print(f'Registrado com sucesso = {m}')
 
 print('=' * 50)
 
-met = input('Escolha a opção da intensidade do seu treino. Média [01] ou Alta intensidade [02]:  ')
+met = input('Escolha a opção da intensidade do seu treino: [01] Média Intensidade / [02] Alta intensidade:  ')
 
 while met != '1' and met != '2':
-    met = input('Opção inválida. Escolha a opção da intensidade do seu treino. Média [01] ou Alta intensidade [02]:  ')
+    met = input('Escolha a opção da intensidade do seu treino: [01] Média Intensidade / [02] Alta intensidade:  ')
 
 if met == '1':
     atv1 = (6.0 * kg * m) / 60
@@ -76,6 +76,21 @@ else:
     atv2 = (4.5 * kg * m) / 60
     print(f'[02]: medida que estima o gasto energético com atividade física é de = {atv2}')
     total = tbm + cad + atv2
+    print('='*50)
     print(f'O seu gasto calórico energético total = {total} ')
 
+print('=' * 50)
 
+opcao = input('Escolha uma opção: [01] Ganhar peso / [02] Perder peso:  ')
+print('Digite quantos porcentos você deseja perder ou ganhar de peso')
+porcento = int(input())
+
+while met != '1' and met != '2':
+    opcao = input('Escolha uma opção: [01] Ganhar peso / [02] Perder peso:  ')
+
+if opcao == '1':
+    aumento_peso = ((porcento/100) * total) + total
+    print(f'Para você aumentar o seu peso você precisa consumir = {aumento_peso:.2f}')
+else:
+    perda_peso = ((porcento/100) * total) - total
+    print(f'Para você perder o seu peso você precisa consumir = {perda_peso:.2f}')
